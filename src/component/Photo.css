@@ -1,0 +1,26 @@
+.PhotoView{ 
+    height: 100%;
+    background-color: rgb(0, 0, 0, 0.8);
+    font-size: 800%;
+    color: gainsboro
+}
+
+.PhotoView:nth-child(1){
+    padding: 10px 0px 20px 0px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+img{
+    display: block;
+    margin: auto;
+}
+
+.Owner{
+    font-size: 120%;
+    font-weight: 700;
+    color: black
+    
+}
