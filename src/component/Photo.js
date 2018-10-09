@@ -17,6 +17,12 @@ class Photo extends Component {
         }
     }
 
+    setHistory(nextId){
+        this.props.loadFunc();
+        this.props.history.push(`/photo/${this.state.id}`);
+        this.handleClick(this.props.photo.listPhotos[nextId].id);
+    }
+
     handleClick(id){
         if(id){
             this.props.history.push(`/photo/${id}`);
@@ -33,7 +39,13 @@ class Photo extends Component {
             for(let i = 0; i < this.props.photo.listPhotos.length;i++){
                 if(this.props.photo.listPhotos[i].id === this.state.id){
                     info = this.props.photo.listPhotos[i];
-                    nextId = this.props.photo.listPhotos[i+1].id;
+                    if(i === this.props.photo.listPhotos.length-1){
+                        this.props.loadFunc();
+                        nextId = this.props.photo.listPhotos.length;
+                    }
+                    else{
+                        nextId = this.props.photo.listPhotos[i+1].id;
+                    }
                     if(i>0){
                         prevId = this.props.photo.listPhotos[i-1].id;
                     }
@@ -49,7 +61,8 @@ class Photo extends Component {
                         <Col xs="10">
                             <img src={info.url_c}></img>
                         </Col>
-                        <Col xs="1" onClick={()=>this.handleClick(nextId)}>
+                        <Col xs="1" onClick={()=>{
+                            nextId===this.props.photo.listPhotos.length?this.setHistory(nextId):this.handleClick(nextId)}}>
                             {">"}
                         </Col>
                     </Row>
